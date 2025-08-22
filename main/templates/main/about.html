@@ -1,0 +1,31 @@
+
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block css %}
+    <link rel="stylesheet" href='{% static "deps/css/my_css.css" %}'>
+{% endblock %}
+
+{% block content %}
+    <div class="page-content">
+        <div class="content-header">
+            <h2 class="page-title">{{ content }}</h2>
+        </div>
+        <div class="content-body">
+            <p class="page-text">{{ text_on_page }}</p>
+        </div>
+    </div>
+{% endblock %}
+
+{% block footer %}
+    <footer>
+        <div class="footer-container">
+            <div class="footer-brand">Aleteia</div>
+            <div class="footer-content">
+                <div class="footer-links">
+                    <span class="footer-credit">@maristan06 (C) 2025</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+{% endblock %}

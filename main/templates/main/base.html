@@ -1,0 +1,219 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href='{% static "deps/css/my_css.css" %}'>
+
+    {% block css %}
+    {% endblock %}
+
+    <!-- Favicons for different platforms -->
+    <link rel="apple-touch-icon" sizes="180x180" href='{% static "deps/favicon/apple-touch-icon.png" %}'>
+    <link rel="icon" type="image/png" sizes="32x32" href='{% static "deps/favicon/favicon-32x32.png" %}'>
+    <link rel="icon" type="image/png" sizes="16x16" href='{% static "deps/favicon/favicon-16x16.png" %}'>
+    <link rel="manifest" href='{% static "deps/favicon/site.webmanifest" %}'>
+    <title>{{ title }}</title>
+</head>
+
+<body>
+    <header class="header">
+        <nav class="nav-container">
+            <div class="nav-left">
+                <a href="{% url 'main:index' %}">HOME</a>
+
+                <div class="info-dropdown">
+                    <a href="#" class="dropdown-toggle">INFO</a>
+                    <div class="dropdown-menu">
+                        <a href="#">Payment and delivery</a>
+                        <a href="#">Contact info</a>
+                        <a href="{% url 'main:about' %}">About us</a>
+                    </div>
+                </div>
+
+                <a href="carts/cart.html">CART</a>
+                <a href="users/login.html">LOG IN</a>
+
+                <div class="profile-dropdown">
+                    <a href="#" class="dropdown-toggle">MY PROFILE</a>
+                    <div class="dropdown-menu">
+                        <a href="carts/cart.html">Cart</a>
+                        <a href="users/profile.html">User profile</a>
+                        <a href="#">Admin panel</a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#">Выйти</a>
+                    </div>
+                </div>
+            </div>
+
+            <a href="{% url 'main:index' %}" class="logo">Aleteia</a>
+
+            <div class="nav-right">
+                <form class="search-form" role="search">
+                    <input class="search-input" type="search" placeholder="Search" aria-label="Search">
+                    <button class="search-btn" type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
+    </header>
+
+    <section>
+        <div class="container">
+            <!-- Каталог и корзина с фиксированным расположением на странице -->
+            <div class="fixed-controls">
+                <!-- Каталог -->
+                <div class="catalog-dropdown">
+                    <button class="catalog-btn" type="button" aria-expanded="false">
+                        Catalogue
+                        <img class="catalog-icon" src='{% static "deps/icons/grid-fill.svg" %}' alt="Catalog Icon" width="16" height="16">
+                    </button>
+                    <div class="dropdown-menu">
+                        <a href="goods/catalog.html">All items</a>
+                        <a href="goods/catalog.html">Earrings</a>
+                        <a href="goods/catalog.html">Bracelets</a>
+                        <a href="goods/catalog.html">Necklaces</a>
+                    </div>
+                </div>
+
+                <!-- Значек корзины, вызывает модальное окно -->
+                <button type="button" class="cart-button" id="modalButton" aria-expanded="false">
+                    <img class="cart-icon" src='{% static "deps/icons/basket2-fill.svg" %}' alt="Cart Icon" width="24" height="24">
+                    <span id="goods-in-cart-count">0</span>
+                </button>
+            </div>
+
+            <!-- Разметка модального окна корзины -->
+            <div class="modal" id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close-btn" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <h3 class="modal-title">Cart</h3>
+                            <div class="cart-container" id="cart-items-container">
+                                <!-- Разметка корзины -->
+                                <div class="cart-item">
+                                    <div class="cart-item-header">
+                                        <h5 class="cart-item-title">Item</h5>
+                                    </div>
+                                    <div class="cart-item-content">
+                                        <div class="quantity-controls">
+                                            <button type="button" class="quantity-btn decrement" data-cart-id="" data-cart-change-url="">-</button>
+                                            <input type="text" class="quantity-input" value="1" readonly>
+                                            <button type="button" class="quantity-btn increment" data-cart-id="" data-cart-change-url="">+</button>
+                                        </div>
+                                        <div class="price-calculation">
+                                            <p>x 100.00 = </p>
+                                        </div>
+                                        <div class="total-price"><strong>100.00 $</strong></div>
+                                        <div class="remove-item">
+                                            <a href="#" class="remove-from-cart" data-cart-id="">
+                                                <img src='{% static "deps/icons/trash3-fill.svg"%}' alt="Remove" width="16" height="16">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="cart-summary">
+                                    <div class="cart-summary-content">
+                                        <p class="summary-text">Итого <strong>1</strong> item(s) a total of</p>
+                                        <h4 class="summary-total"><strong>100.00 $</strong></h4>
+                                    </div>
+                                </div>
+                                <!-- Закончилась разметка корзины -->
+                            </div>
+                            <a class="confirm-order-btn" href="orders/create_order.html">
+                                Confirm order
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Закончилась разметка модального окна -->
+        </div>
+
+        <!-- Контент -->
+        <div class="container">
+            <div class="content-wrapper">
+                <div class="sidebar">
+                    <!-- Пустой блок на Ваше усмотрение -->
+                </div>
+                <div class="main-content">
+                    <!-- Контент на странице -->
+                    {% block content %}
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {% block footer %}
+    {% endblock %}
+
+    <script src='{% static "deps/js/jquery/jquery-3.7.0.min.js" %}'></script>
+    <script src='{% static "deps/js/jquery-events.js" %}'></script>
+    <script src='{% static "deps/js/jquery-ajax.js" %}'></script>
+    <script>
+        // Modal functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const modalButton = document.getElementById('modalButton');
+            const modal = document.getElementById('exampleModal');
+            const closeBtn = modal.querySelector('.close-btn');
+
+            function openModal() {
+                modal.classList.add('show');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeModal() {
+                modal.classList.remove('show');
+                document.body.style.overflow = 'auto';
+            }
+
+            modalButton.addEventListener('click', openModal);
+            closeBtn.addEventListener('click', closeModal);
+
+            // Close modal when clicking outside
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+
+            // Quantity controls
+            document.querySelectorAll('.quantity-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const input = this.parentNode.querySelector('.quantity-input');
+                    let value = parseInt(input.value);
+
+                    if (this.classList.contains('increment')) {
+                        value++;
+                    } else if (this.classList.contains('decrement') && value > 1) {
+                        value--;
+                    }
+
+                    input.value = value;
+                });
+            });
+
+            // Dropdown toggles
+            document.querySelectorAll('.catalog-dropdown').forEach(dropdown => {
+                dropdown.addEventListener('mouseenter', function() {
+                    this.classList.add('show');
+                });
+                dropdown.addEventListener('mouseleave', function() {
+                    this.classList.remove('show');
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

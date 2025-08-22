@@ -1,15 +1,23 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{ title }}</title>
-</head>
-<body>
-    <p>
-        {{ content }}
-    </p>
-</body>
-</html>
+{% extends "main/base.html" %}
+{% load static %}
+
+    {% block css %}
+        <link rel="stylesheet" href='{% static "deps/css/my_css.css" %}'>
+    {% endblock %}
+
+    {% block content %}
+        <h1 class=""><strong>{{ content }}</strong></h1>
+    {% endblock %}
+
+    {% block footer %}
+    <footer>
+        <div class="footer-container">
+            <div class="footer-brand">Aleteia</div>
+            <div class="footer-content">
+                <div class="footer-links">
+                    <span class="footer-credit">@maristan06 (C) 2025</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+    {% endblock %}

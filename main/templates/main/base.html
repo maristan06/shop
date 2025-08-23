@@ -72,10 +72,10 @@
                         <img class="catalog-icon" src='{% static "deps/icons/grid-fill.svg" %}' alt="Catalog Icon" width="16" height="16">
                     </button>
                     <div class="dropdown-menu">
-                        <a href="goods/catalog.html">All items</a>
-                        <a href="goods/catalog.html">Earrings</a>
-                        <a href="goods/catalog.html">Bracelets</a>
-                        <a href="goods/catalog.html">Necklaces</a>
+                        <a href='{% url "catalog:index" %}'>All items</a>
+                        <a href='{% url "catalog:index" %}'>Earrings</a>
+                        <a href='{% url "catalog:index" %}'>Bracelets</a>
+                        <a href='{% url "catalog:index" %}'>Necklaces</a>
                     </div>
                 </div>
 

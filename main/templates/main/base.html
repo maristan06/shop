@@ -54,8 +54,8 @@
             <a href="{% url 'main:index' %}" class="logo">Aleteia</a>
 
             <div class="nav-right">
-                <form class="search-form" role="search">
-                    <input class="search-input" type="search" placeholder="Search" aria-label="Search">
+                <form class="search-form" role="search" action="{% url 'catalog:search' %}" method="get">
+                    <input class="search-input" type="search" name="q" placeholder="Search" aria-label="Search">
                     <button class="search-btn" type="submit">Search</button>
                 </form>
             </div>

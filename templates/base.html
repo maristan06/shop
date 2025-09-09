@@ -37,16 +37,16 @@
                 </div>
 
                 <a href="carts/cart.html">CART</a>
-                <a href="users/login.html">LOG IN</a>
+                <a href="{% url 'user:login' %}">LOG IN</a>
 
                 <div class="profile-dropdown">
-                    <a href="#" class="dropdown-toggle">MY PROFILE</a>
+                    <a href="{% url 'user:profile' %}" class="dropdown-toggle">MY PROFILE</a>
                     <div class="dropdown-menu">
                         <a href="carts/cart.html">Cart</a>
                         <a href="users/profile.html">User profile</a>
                         <a href="{% url 'admin:index' %}">Admin panel</a>
                         <div class="dropdown-divider"></div>
-                        <a href="#">Выйти</a>
+                        <a href="{% url 'user:logout' %}">LOG OUT</a>
                     </div>
                 </div>
             </div>
@@ -148,6 +148,7 @@
                 </div>
                 <div class="main-content">
                     <!-- Контент на странице -->
+                    {% include "includes/notifications.html" %}
                     {% block content %}
                     {% endblock %}
                 </div>

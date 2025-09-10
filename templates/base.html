@@ -37,18 +37,22 @@
                 </div>
 
                 <a href="carts/cart.html">CART</a>
+                {% if not user.is_authenticated %}
                 <a href="{% url 'user:login' %}">LOG IN</a>
-
+                {% else %}
                 <div class="profile-dropdown">
                     <a href="{% url 'user:profile' %}" class="dropdown-toggle">MY PROFILE</a>
                     <div class="dropdown-menu">
                         <a href="carts/cart.html">Cart</a>
                         <a href="users/profile.html">User profile</a>
+                        {% if user.is_admin or user.is_staff %}
                         <a href="{% url 'admin:index' %}">Admin panel</a>
+                        { endif %}
                         <div class="dropdown-divider"></div>
                         <a href="{% url 'user:logout' %}">LOG OUT</a>
                     </div>
                 </div>
+                {% endif %}
             </div>
 
             <a href="{% url 'main:index' %}" class="logo">Aleteia</a>

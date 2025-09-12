@@ -36,7 +36,7 @@
                     </div>
                 </div>
 
-                <a href="carts/cart.html">CART</a>
+                <a href="{% url 'user:users_cart' %}">CART</a>
                 {% if not user.is_authenticated %}
                 <a href="{% url 'user:login' %}">LOG IN</a>
                 {% else %}
@@ -104,34 +104,7 @@
                             <h3 class="modal-title">Cart</h3>
                             <div class="cart-container" id="cart-items-container">
                                 <!-- Разметка корзины -->
-                                <div class="cart-item">
-                                    <div class="cart-item-header">
-                                        <h5 class="cart-item-title">Item</h5>
-                                    </div>
-                                    <div class="cart-item-content">
-                                        <div class="quantity-controls">
-                                            <button type="button" class="quantity-btn decrement" data-cart-id="" data-cart-change-url="">-</button>
-                                            <input type="text" class="quantity-input" value="1" readonly>
-                                            <button type="button" class="quantity-btn increment" data-cart-id="" data-cart-change-url="">+</button>
-                                        </div>
-                                        <div class="price-calculation">
-                                            <p>x 100.00 = </p>
-                                        </div>
-                                        <div class="total-price"><strong>100.00 $</strong></div>
-                                        <div class="remove-item">
-                                            <a href="#" class="remove-from-cart" data-cart-id="">
-                                                <img src='{% static "deps/icons/trash3-fill.svg"%}' alt="Remove" width="16" height="16">
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="cart-summary">
-                                    <div class="cart-summary-content">
-                                        <p class="summary-text">Итого <strong>1</strong> item(s) a total of</p>
-                                        <h4 class="summary-total"><strong>100.00 $</strong></h4>
-                                    </div>
-                                </div>
+                                {% include 'carts/includes/included_cart.html %}
                                 <!-- Закончилась разметка корзины -->
                             </div>
                             <a class="confirm-order-btn" href="orders/create_order.html">

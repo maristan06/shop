@@ -1,23 +1,27 @@
 {% extends "base.html" %}
 {% load static %}
 
-    {% block css %}
-        <link rel="stylesheet" href='{% static "deps/css/my_css.css" %}'>
-    {% endblock %}
+{% block css %}
+    <link rel="stylesheet" href='{% static "deps/css/my_css.css" %}'>
+{% endblock %}
 
-    {% block content %}
-        <h1 class=""><strong>{{ content }}</strong></h1>
-    {% endblock %}
+{% block modal_cart %}
+{% include "includes/cart_button.html" %}
+{% endblock %}
 
-    {% block footer %}
-    <footer>
-        <div class="footer-container">
-            <div class="footer-brand">Aleteia</div>
-            <div class="footer-content">
-                <div class="footer-links">
-                    <span class="footer-credit">@maristan06 (C) 2025</span>
-                </div>
+{% block content %}
+    <h1 class=""><strong>{{ content }}</strong></h1>
+{% endblock %}
+
+{% block footer %}
+<footer>
+    <div class="footer-container">
+        <div class="footer-brand">Aleteia</div>
+        <div class="footer-content">
+            <div class="footer-links">
+                <span class="footer-credit">@maristan06 (C) 2025</span>
             </div>
         </div>
-    </footer>
-    {% endblock %}
+    </div>
+</footer>
+{% endblock %}

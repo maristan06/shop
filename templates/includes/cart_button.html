@@ -25,8 +25,8 @@
                         {% include 'carts/includes/included_cart.html %}
                         <!-- Закончилась разметка корзины -->
                     </div>
-                    {% carts %}
-                    <a class="confirm-order-btn" href="orders/create_order.html">
+                    {% if carts %}
+                    <a class="confirm-order-btn" href="{% url 'orders:create_order' %}">
                         Confirm order
                     </a>
                     {% endif %}
